@@ -11,50 +11,59 @@ var oldCursor = {
     y: 100
 };
 
+var marioPos = {
+    x: 200,
+    y: 100
+};
+
+var img = new Image();
+
 (function (window) {
+    img.src = 'http://www.dan-dare.org/Dan%20Mario/SMB1MarioSmallAni.gif';
     function gameLoop() {
+        context.clearRect(0, 0, 400, 200);
         context.beginPath();
         context.moveTo(oldCursor.x, oldCursor.y);
         context.lineTo(cursor.x, cursor.y);
         context.stroke();
-        oldCursor = cursor;
-    }
 
+        context.drawImage(img, marioPos.x, marioPos.y);
+    }
     window.setInterval(gameLoop, 1000 / 60); // 60fps
 }(window));
 
-function getMousePos(canvas, evt) {
+function getMousePos(canvas, event) {
     var rect = canvas.getBoundingClientRect();
     return {
-        x: evt.clientX - rect.left,
-        y: evt.clientY - rect.top
+        x: event.clientX - rect.left,
+        y: event.clientY - rect.top
     };
 }
 
-$(document.body).on('keydown', function (e) {
+$(document.body).on('keydown', function (event) {
     const step = 5;
     const leftArrow = 37;
     const upArrow = 38;
     const rightArrow = 39;
     const downArrow = 40;
-
-    switch (e.which) {
+    switch (event.which) {
         case  leftArrow:
-            cursor.x -= step;
+            marioPos.x -= step;
             break;
         case  upArrow:
-            cursor.y -= step;
+            marioPos.y -= step;
             break;
         case  rightArrow:
-            cursor.x += step;
+            marioPos.x += step;
             break;
         case  downArrow:
-            cursor.y += step;
+            marioPos.y += step;
             break;
     }
 });
 
-canvas.addEventListener('click', function (evt) {
-    cursor = getMousePos(canvas, evt);
+canvas.addEventListener('click', function (event) {
+    oldCursor = cursor;
+    cursor = getMousePos(canvas, event);
 }, false);
 
