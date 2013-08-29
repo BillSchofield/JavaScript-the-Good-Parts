@@ -1,21 +1,9 @@
 var canvas = document.getElementById('gameOne');
 var context = canvas.getContext('2d');
 
-var cursor = {
-    x: 200,
-    y: 100
-};
-
-var oldCursor = {
-    x: 200,
-    y: 100
-};
-
-var marioPos = {
-    x: 200,
-    y: 100
-};
-
+var cursor = new Vector2d(200, 100);
+var oldCursor = new Vector2d(200, 100);
+var marioPos = new Vector2d(200, 100);
 var img = new Image();
 
 (function (window) {
@@ -23,21 +11,18 @@ var img = new Image();
     function gameLoop() {
         context.clearRect(0, 0, 400, 200);
         context.beginPath();
-        context.moveTo(oldCursor.x, oldCursor.y);
-        context.lineTo(cursor.x, cursor.y);
+        context.moveTo(oldCursor.getX(), oldCursor.getY());
+        context.lineTo(cursor.getX(), cursor.getY());
         context.stroke();
 
-        context.drawImage(img, marioPos.x, marioPos.y);
+        context.drawImage(img, marioPos.getX(), marioPos.getY());
     }
     window.setInterval(gameLoop, 1000 / 60); // 60fps
 }(window));
 
 function getMousePos(canvas, event) {
     var rect = canvas.getBoundingClientRect();
-    return {
-        x: event.clientX - rect.left,
-        y: event.clientY - rect.top
-    };
+    return new Vector2d(event.clientX - rect.left, event.clientY - rect.top);
 }
 
 $(document.body).on('keydown', function (event) {
@@ -48,16 +33,16 @@ $(document.body).on('keydown', function (event) {
     const downArrow = 40;
     switch (event.which) {
         case  leftArrow:
-            marioPos.x -= step;
+            marioPos.addX(-step);
             break;
         case  upArrow:
-            marioPos.y -= step;
+            marioPos.addY(-step);
             break;
         case  rightArrow:
-            marioPos.x += step;
+            marioPos.addX(step);
             break;
         case  downArrow:
-            marioPos.y += step;
+            marioPos.addY(step);
             break;
     }
 });
