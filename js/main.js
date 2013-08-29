@@ -3,7 +3,7 @@ var context = canvas.getContext('2d');
 
 var cursor = new Vector2d(200, 100);
 var oldCursor = new Vector2d(200, 100);
-var marioPos = new Vector2d(200, 100);
+var mario = new Entity2d(new Vector2d(200, 100));
 var img = new Image();
 
 (function (window) {
@@ -15,7 +15,7 @@ var img = new Image();
         context.lineTo(cursor.getX(), cursor.getY());
         context.stroke();
 
-        context.drawImage(img, marioPos.getX(), marioPos.getY());
+        context.drawImage(img, mario.getX(), mario.getY());
     }
     window.setInterval(gameLoop, 1000 / 60); // 60fps
 }(window));
@@ -26,23 +26,22 @@ function getMousePos(canvas, event) {
 }
 
 $(document.body).on('keydown', function (event) {
-    const step = 5;
     const leftArrow = 37;
     const upArrow = 38;
     const rightArrow = 39;
     const downArrow = 40;
     switch (event.which) {
         case  leftArrow:
-            marioPos.addX(-step);
+            mario.moveLeft();
             break;
         case  upArrow:
-            marioPos.addY(-step);
+            mario.moveUp();
             break;
         case  rightArrow:
-            marioPos.addX(step);
+            mario.moveRight();
             break;
         case  downArrow:
-            marioPos.addY(step);
+            mario.moveDown();
             break;
     }
 });
