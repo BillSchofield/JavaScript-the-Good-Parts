@@ -1,7 +1,12 @@
-function Entity2d(position) {
+function Entity2d(position, sprite) {
     this.position = position;
+    this.sprite = sprite;
     this.step = 5;
 }
+
+Entity2d.prototype.draw = function() {
+    this.sprite.draw(this.position);
+};
 
 Entity2d.prototype.getX = function() {
     return this.position.getX();

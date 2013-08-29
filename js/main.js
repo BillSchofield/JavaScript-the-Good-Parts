@@ -3,19 +3,16 @@ var context = canvas.getContext('2d');
 
 var cursor = new Vector2d(200, 100);
 var oldCursor = new Vector2d(200, 100);
-var mario = new Entity2d(new Vector2d(200, 100));
-var img = new Image();
+var mario = new Entity2d(new Vector2d(200, 100), new Sprite(context, 'http://www.dan-dare.org/Dan%20Mario/SMB1MarioSmallAni.gif'));
 
 (function (window) {
-    img.src = 'http://www.dan-dare.org/Dan%20Mario/SMB1MarioSmallAni.gif';
     function gameLoop() {
         context.clearRect(0, 0, 400, 200);
         context.beginPath();
         context.moveTo(oldCursor.getX(), oldCursor.getY());
         context.lineTo(cursor.getX(), cursor.getY());
         context.stroke();
-
-        context.drawImage(img, mario.getX(), mario.getY());
+        mario.draw();
     }
     window.setInterval(gameLoop, 1000 / 60); // 60fps
 }(window));
