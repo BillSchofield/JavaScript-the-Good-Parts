@@ -8,7 +8,6 @@ game.context = game.canvas.getContext('2d');
 game.cursor = new Vector2d(200, 100);
 game.oldCursor = new Vector2d(200, 100);
 game.mario = new Entity2d(new Vector2d(200, 100), new Sprite(game.context, 'http://www.dan-dare.org/Dan%20Mario/SMB1MarioSmallAni.gif'));
-
 (function (window) {
     function gameLoop() {
         game.context.clearRect(0, 0, 400, 200);
