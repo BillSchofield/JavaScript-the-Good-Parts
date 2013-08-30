@@ -1,26 +1,23 @@
-var canvas = document.getElementById('gameOne');
-var context = canvas.getContext('2d');
+var game = game || {};
 
-var cursor = new Vector2d(200, 100);
-var oldCursor = new Vector2d(200, 100);
-var mario = new Entity2d(new Vector2d(200, 100), new Sprite(context, 'http://www.dan-dare.org/Dan%20Mario/SMB1MarioSmallAni.gif'));
+game.canvas = document.getElementById('gameOne');
+game.context = game.canvas.getContext('2d');
+
+game.cursor = new Vector2d(200, 100);
+game.oldCursor = new Vector2d(200, 100);
+game.mario = new Entity2d(new Vector2d(200, 100), new Sprite(game.context, 'http://www.dan-dare.org/Dan%20Mario/SMB1MarioSmallAni.gif'));
 
 (function (window) {
     function gameLoop() {
-        context.clearRect(0, 0, 400, 200);
-        context.beginPath();
-        context.moveTo(oldCursor.getX(), oldCursor.getY());
-        context.lineTo(cursor.getX(), cursor.getY());
-        context.stroke();
-        mario.draw();
+        game.context.clearRect(0, 0, 400, 200);
+        game.context.beginPath();
+        game.context.moveTo(game.oldCursor.getX(), game.oldCursor.getY());
+        game.context.lineTo(game.cursor.getX(), game.cursor.getY());
+        game.context.stroke();
+        game.mario.draw();
     }
     window.setInterval(gameLoop, 1000 / 60); // 60fps
 }(window));
-
-function getMousePos(canvas, event) {
-    var rect = canvas.getBoundingClientRect();
-    return new Vector2d(event.clientX - rect.left, event.clientY - rect.top);
-}
 
 $(document.body).on('keydown', function (event) {
     const leftArrow = 37;
@@ -29,22 +26,27 @@ $(document.body).on('keydown', function (event) {
     const downArrow = 40;
     switch (event.which) {
         case  leftArrow:
-            mario.moveLeft();
+            game.mario.moveLeft();
             break;
         case  upArrow:
-            mario.moveUp();
+            game.mario.moveUp();
             break;
         case  rightArrow:
-            mario.moveRight();
+            game.mario.moveRight();
             break;
         case  downArrow:
-            mario.moveDown();
+            game.mario.moveDown();
             break;
     }
 });
 
-canvas.addEventListener('click', function (event) {
-    oldCursor = cursor;
-    cursor = getMousePos(canvas, event);
+game.canvas.addEventListener('click', function (event) {
+    function getMousePos(canvas, event) {
+        var rect = canvas.getBoundingClientRect();
+        return new Vector2d(event.clientX - rect.left, event.clientY - rect.top);
+    }
+
+    game.oldCursor = game.cursor;
+    game.cursor = getMousePos(game.canvas, event);
 }, false);
 
