@@ -1,3 +1,5 @@
+"use strict";
+
 var game = game || {};
 
 game.canvas = document.getElementById('gameOne');
@@ -20,10 +22,10 @@ game.mario = new Entity2d(new Vector2d(200, 100), new Sprite(game.context, 'http
 }(window));
 
 $(document.body).on('keydown', function (event) {
-    const leftArrow = 37;
-    const upArrow = 38;
-    const rightArrow = 39;
-    const downArrow = 40;
+    var leftArrow = 37;
+    var upArrow = 38;
+    var rightArrow = 39;
+    var downArrow = 40;
     switch (event.which) {
         case  leftArrow:
             game.mario.moveLeft();

@@ -1,3 +1,5 @@
+"use strict";
+
 function Sprite(context, imageSource) {
     this.context = context;
     this.image = new Image();

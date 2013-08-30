@@ -1,3 +1,5 @@
+"use strict";
+
 function Entity2d(position, sprite) {
     this.position = position;
     this.sprite = sprite;
