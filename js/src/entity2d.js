@@ -4,41 +4,45 @@ var game = game || {};
 
 game.entity2d = function(spec) {
     var that = {};
-    spec.step = 5;
-    
+    var step = 5;
+    var position = spec.position;
+    var velocity = spec.velocity;
+    var acceleration = spec.acceleration;
+    var sprite = spec.sprite;
+
     that.update = function() {
-        spec.velocity.addX(spec.acceleration.getX());
-        spec.velocity.addY(spec.acceleration.getY());
-        spec.position.addX(spec.velocity.getX());
-        spec.position.addY(spec.velocity.getY());
+        velocity.addX(acceleration.getX());
+        velocity.addY(acceleration.getY());
+        position.addX(velocity.getX());
+        position.addY(velocity.getY());
     };
     
     that.draw = function() {
-        spec.sprite.draw(spec.position);
+        sprite.draw(spec.position);
     };
     
     that.getX = function() {
-        return spec.position.getX();
+        return position.getX();
     };
     
     that.getY = function() {
-        return spec.position.getY();
+        return position.getY();
     };
     
     that.moveLeft = function() {
-        return spec.position.addX(-spec.step);
+        return position.addX(-step);
     };
     
     that.moveRight = function() {
-        return spec.position.addX(spec.step);
+        return position.addX(step);
     };
     
     that.moveUp = function() {
-        return spec.position.addY(-spec.step);
+        return position.addY(-step);
     };
     
     that.moveDown = function() {
-        return spec.position.addY(spec.step);
+        return position.addY(step);
     };
     
     return that;    
