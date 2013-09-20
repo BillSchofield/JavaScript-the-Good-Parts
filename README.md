@@ -1,4 +1,4 @@
-# [HTML5GameTemplate]
+# HTML5GameTemplate
 
 HTML5 Boilerplate is a simple example of Test Driven game-like behavior
 implemented in Javascript using a functional object creation model (as described in
