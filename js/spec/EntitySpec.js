@@ -6,9 +6,9 @@ describe("Entity2d", function () {
     var sprite;
 
     beforeEach(function () {
-        position = jasmine.createSpyObj('vector2d', ['getX', 'getY', 'setX', 'setY', 'addX', 'addY']);
-        velocity = jasmine.createSpyObj('vector2d', ['getX', 'getY', 'setX', 'setY', 'addX', 'addY']);
-        acceleration = jasmine.createSpyObj('vector2d', ['getX', 'getY', 'setX', 'setY', 'addX', 'addY']);
+        position = jasmine.createSpyObj('vector2d', ['getX', 'getY', 'addX', 'addY']);
+        velocity = jasmine.createSpyObj('vector2d', ['getX', 'getY', 'addX', 'addY']);
+        acceleration = jasmine.createSpyObj('vector2d', ['getX', 'getY', 'addX', 'addY']);
         sprite = jasmine.createSpyObj('sprite', ['draw']);
         entity = game.entity2d({
             position: position,
@@ -45,10 +45,5 @@ describe("Entity2d", function () {
         acceleration.getX = jasmine.createSpy("getX() spy").andReturn(1);
         entity.update();
         expect(velocity.addX).toHaveBeenCalledWith(1);
-    });
-
-    it("should have negative velocity when it jumps", function () {
-        entity.jump();
-        expect(velocity.setY).toHaveBeenCalledWith(-5);
     });
 });

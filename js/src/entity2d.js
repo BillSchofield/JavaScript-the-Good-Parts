@@ -13,10 +13,6 @@ game.entity2d = function(spec) {
         spec.position.addY(spec.velocity.getY());
     };
     
-    that.jump = function() {
-        spec.velocity.setY(-5);
-    };
-    
     that.draw = function() {
         spec.sprite.draw(spec.position);
     };
