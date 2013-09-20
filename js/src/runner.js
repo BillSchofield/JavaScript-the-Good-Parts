@@ -1,22 +1,25 @@
 var game = game || {};
 
 game.runner = function(spec){
-    var that = {};
+    var keyResponses = {
+        37 : function(entity){entity.moveLeft();},
+        38 : function(entity){entity.moveUp();},
+        39 : function(entity){entity.moveRight();},
+        40 : function(entity){entity.moveDown();}
+    };
 
-    var document = spec.document;
-    var canvas = document.getElementById('gameOne');
-    var context = canvas.getContext('2d');
-    var entity = game.entity2d({
-        position: game.vector2d({x:-100, y:0}),
-        velocity: game.vector2d({x:4, y:0.1}),
-        acceleration: game.vector2d({x:-0.01, y:0}),
-        sprite: game.sprite({
-            context: context,
-            imageSource: 'http://img.informer.com/icons/png/32/104/104916.png'
-        })
-    });
+    function defaultEntity() {
+        return game.entity2d({
+            position: game.vector2d({x: -100, y: 0}),
+            velocity: game.vector2d({x: 4, y: 0.1}),
+            acceleration: game.vector2d({x: -0.01, y: 0}),
+            sprite: game.sprite({
+                context: context,
+                imageSource: 'http://img.informer.com/icons/png/32/104/104916.png'
+            })
+        });
+    }
 
-    var path = [];
     function drawPath(path){
         context.beginPath();
         context.moveTo(400, 100);
@@ -26,50 +29,47 @@ game.runner = function(spec){
         context.stroke();
     }
 
-    that.go = function(window){
-        function gameLoop() {
-            context.clearRect(0, 0, 800, 200);
-            drawPath(path);
-            entity.update();
-            entity.draw();
+    function keyHandler(event) {
+        var keyPress = event.which;
+        if (keyPress in keyResponses) {
+            keyResponses[keyPress](entity);
         }
-        window.setInterval(gameLoop, 1000 / 60); // 60fps
     };
 
-    $(document.body).on('keydown', function (event) {
-        var leftArrow = 37;
-        var upArrow = 38;
-        var rightArrow = 39;
-        var downArrow = 40;
-        var space = 32;
-        switch (event.which) {
-            case  leftArrow:
-                entity.moveLeft();
-                break;
-            case  upArrow:
-                entity.moveUp();
-                break;
-            case  rightArrow:
-                entity.moveRight();
-                break;
-            case  downArrow:
-                entity.moveDown();
-                break;
-            case  space:
-                entity.jump();
-                break;
-        }
-    });
+    function clickEventHandler() {
+        return function (event) {
+            function getMousePos(canvas, event) {
+                var rect = canvas.getBoundingClientRect();
+                return game.vector2d({x: event.clientX - rect.left, y: event.clientY - rect.top});
+            }
 
-    canvas.addEventListener('click', function (event) {
-        function getMousePos(canvas, event) {
-            var rect = canvas.getBoundingClientRect();
-            return game.vector2d({x: event.clientX - rect.left, y: event.clientY - rect.top});
-        }
+            path.push(getMousePos(canvas, event));
+        };
+    }
 
-        path.push(getMousePos(canvas, event));
-    }, false);
+    function gameLoopRunner() {
+        return function (window) {
+            function gameLoop() {
+                context.clearRect(0, 0, 800, 200);
+                drawPath(path);
+                entity.update();
+                entity.draw();
+            }
 
+            var framesPerSecond = 1000 / 60;
+            window.setInterval(gameLoop, framesPerSecond);
+        };
+    }
 
+    var that = {};
+    var document = spec.document;
+    var canvas = document.getElementById('gameOne');
+    var context = canvas.getContext('2d');
+    var entity = defaultEntity();
+    var path = [];
+
+    that.go = gameLoopRunner();
+    $(document.body).on('keydown', keyHandler);
+    canvas.addEventListener('click', clickEventHandler(), false);
     return that;
 };
