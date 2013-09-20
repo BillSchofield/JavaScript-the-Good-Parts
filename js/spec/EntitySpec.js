@@ -1,4 +1,4 @@
-describe("Entity2d", function () {
+describe("entity2d", function () {
     var entity;
     var position;
     var velocity;

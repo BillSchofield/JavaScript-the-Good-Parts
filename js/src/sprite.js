@@ -1,12 +1,16 @@
 "use strict";
 
-function Sprite(context, imageSource) {
-    this.context = context;
-    this.image = new Image();
-    this.image.src = imageSource;
+var game = game || {};
 
-}
+game.sprite = function(spec){
+    var that = {};
 
-Sprite.prototype.draw = function(position) {
-    this.context.drawImage(this.image, position.getX(), position.getY());
+    spec.image = new Image();
+    spec.image.src = spec.imageSource;
+
+    that.draw = function(position) {
+        spec.context.drawImage(spec.image, position.getX(), position.getY());
+    };
+
+    return that;
 };

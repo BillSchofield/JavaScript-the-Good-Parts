@@ -12,7 +12,10 @@ game.entity = game.entity2d({
     position: game.vector2d({x:-100, y:0}),
     velocity: game.vector2d({x:4, y:0.1}),
     acceleration: game.vector2d({x:-0.01, y:0}),
-    sprite: new Sprite(game.context, 'http://img.informer.com/icons/png/32/104/104916.png')
+    sprite: game.sprite({
+        context: game.context,
+        imageSource: 'http://img.informer.com/icons/png/32/104/104916.png'
+    })
 });
 
 (function (window) {
