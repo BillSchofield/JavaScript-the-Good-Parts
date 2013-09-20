@@ -11,10 +11,8 @@ game.entity2d = function(spec) {
     var sprite = spec.sprite;
 
     that.update = function() {
-        velocity.addX(acceleration.getX());
-        velocity.addY(acceleration.getY());
-        position.addX(velocity.getX());
-        position.addY(velocity.getY());
+        velocity.add(acceleration);
+        position.add(velocity);
     };
     
     that.draw = function() {

@@ -16,6 +16,11 @@ game.vector2d = function(spec){
         return y;
     };
 
+    that.add = function(that) {
+        x += that.getX();
+        y += that.getY();
+    };
+
     that.addX = function(newX) {
         x += newX;
     };

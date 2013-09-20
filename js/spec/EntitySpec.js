@@ -6,9 +6,9 @@ describe("entity2d", function () {
     var sprite;
 
     beforeEach(function () {
-        position = jasmine.createSpyObj('vector2d', ['getX', 'getY', 'addX', 'addY']);
-        velocity = jasmine.createSpyObj('vector2d', ['getX', 'getY', 'addX', 'addY']);
-        acceleration = jasmine.createSpyObj('vector2d', ['getX', 'getY', 'addX', 'addY']);
+        position = jasmine.createSpyObj('vector2d', ['getX', 'getY', 'add']);
+        velocity = jasmine.createSpyObj('vector2d', ['getX', 'getY', 'add']);
+        acceleration = jasmine.createSpyObj('vector2d', ['getX', 'getY', 'add']);
         sprite = jasmine.createSpyObj('sprite', ['draw']);
         entity = game.entity2d({
             position: position,
@@ -23,27 +23,13 @@ describe("entity2d", function () {
         expect(sprite.draw).toHaveBeenCalledWith(position);
     });
 
-    it("should move right when it has velocity of positive X", function () {
-        velocity.getX = jasmine.createSpy("getX() spy").andReturn(1);
+    it("should add velocity to position", function () {
         entity.update();
-        expect(position.addX).toHaveBeenCalledWith(1);
+        expect(position.add).toHaveBeenCalledWith(velocity);
     });
 
-    it("should move down when it has velocity of positive Y", function () {
-        velocity.getY = jasmine.createSpy("getY() spy").andReturn(1);
+    it("should add acceleration to velocity", function () {
         entity.update();
-        expect(position.addY).toHaveBeenCalledWith(1);
-    });
-
-    it("should have positive velocity when it has acceleration of positive Y", function () {
-        acceleration.getY = jasmine.createSpy("getY() spy").andReturn(1);
-        entity.update();
-        expect(velocity.addY).toHaveBeenCalledWith(1);
-    });
-
-    it("should have positive velocity when it has acceleration of positive X", function () {
-        acceleration.getX = jasmine.createSpy("getX() spy").andReturn(1);
-        entity.update();
-        expect(velocity.addX).toHaveBeenCalledWith(1);
+        expect(velocity.add).toHaveBeenCalledWith(acceleration);
     });
 });
