@@ -19,20 +19,18 @@ game.runner = function(spec){
         })
     });
 
-    that.go = function(){
-        (function (window) {
-            function gameLoop() {
-                spec.context.clearRect(0, 0, 800, 200);
-                spec.context.beginPath();
-                spec.context.moveTo(spec.oldCursor.getX(), spec.oldCursor.getY());
-                spec.context.lineTo(spec.cursor.getX(), spec.cursor.getY());
-                spec.context.stroke();
-                spec.entity.update();
-                spec.entity.draw();
-            }
-            window.setInterval(gameLoop, 1000 / 60); // 60fps
-        }(window));
-    }
+    that.go = function(window){
+        function gameLoop() {
+            spec.context.clearRect(0, 0, 800, 200);
+            spec.context.beginPath();
+            spec.context.moveTo(spec.oldCursor.getX(), spec.oldCursor.getY());
+            spec.context.lineTo(spec.cursor.getX(), spec.cursor.getY());
+            spec.context.stroke();
+            spec.entity.update();
+            spec.entity.draw();
+        }
+        window.setInterval(gameLoop, 1000 / 60); // 60fps
+    };
 
     $(spec.document.body).on('keydown', function (event) {
         var leftArrow = 37;
