@@ -10,7 +10,12 @@ describe("Entity2d", function () {
         velocity = jasmine.createSpyObj('vector2d', ['getX', 'getY', 'setX', 'setY', 'addX', 'addY']);
         acceleration = jasmine.createSpyObj('vector2d', ['getX', 'getY', 'setX', 'setY', 'addX', 'addY']);
         sprite = jasmine.createSpyObj('sprite', ['draw']);
-        entity = new Entity2d(position, velocity, acceleration, sprite);
+        entity = game.entity2d({
+            position: position,
+            velocity: velocity,
+            acceleration: acceleration,
+            sprite:sprite
+        });
     });
 
     it("should draw its sprite", function () {

@@ -7,7 +7,14 @@ game.context = game.canvas.getContext('2d');
 
 game.cursor = new Vector2d(200, 100);
 game.oldCursor = new Vector2d(200, 100);
-game.entity = new Entity2d(new Vector2d(-100, 0), new Vector2d(4, 0.1), new Vector2d(-0.01, 0), new Sprite(game.context, 'http://img.informer.com/icons/png/32/104/104916.png'));
+
+game.entity = game.entity2d({
+    position: new Vector2d(-100, 0),
+    velocity: new Vector2d(4, 0.1),
+    acceleration: new Vector2d(-0.01, 0),
+    sprite: new Sprite(game.context, 'http://img.informer.com/icons/png/32/104/104916.png')
+});
+
 (function (window) {
     function gameLoop() {
         game.context.clearRect(0, 0, 800, 200);
