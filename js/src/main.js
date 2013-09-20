@@ -1,4 +1,5 @@
 "use strict";
 
 var game = game || {};
-game.runner({document: document}).go(window);
+var runner = game.runner({document: document});
+runner.go(window);
