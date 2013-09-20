@@ -5,20 +5,23 @@ var game = game || {};
 game.vector2d = function(spec){
     var that = {};
 
+    var x = spec.x;
+    var y = spec.y;
+
     that.getX = function() {
-        return spec.x;
+        return x;
     };
 
     that.getY = function() {
-        return spec.y;
+        return y;
     };
 
-    that.addX = function(x) {
-        spec.x += x ;
+    that.addX = function(newX) {
+        x += newX;
     };
 
-    that.addY = function(y) {
-        spec.y += y ;
+    that.addY = function(newY) {
+        y += newY;
     };
 
     return that;

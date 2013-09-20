@@ -5,11 +5,12 @@ var game = game || {};
 game.sprite = function(spec){
     var that = {};
 
-    spec.image = new Image();
-    spec.image.src = spec.imageSource;
+    var image = new Image();
+    image.src = spec.imageSource;
+    var context = spec.context;
 
     that.draw = function(position) {
-        spec.context.drawImage(spec.image, position.getX(), position.getY());
+        context.drawImage(image, position.getX(), position.getY());
     };
 
     return that;
