@@ -4,11 +4,12 @@ function Entity2d(position, velocity, acceleration, sprite) {
     this.position = position;
     this.velocity = velocity;
     this.acceleration = acceleration;
-    this.sprite = sprite;
+    this.entity = sprite;
     this.step = 5;
 }
 
 Entity2d.prototype.update = function() {
+    this.velocity.addX(this.acceleration.getX());
     this.velocity.addY(this.acceleration.getY());
     this.position.addX(this.velocity.getX());
     this.position.addY(this.velocity.getY());
@@ -19,7 +20,7 @@ Entity2d.prototype.jump = function() {
 };
 
 Entity2d.prototype.draw = function() {
-    this.sprite.draw(this.position);
+    this.entity.draw(this.position);
 };
 
 Entity2d.prototype.getX = function() {

@@ -7,16 +7,16 @@ game.context = game.canvas.getContext('2d');
 
 game.cursor = new Vector2d(200, 100);
 game.oldCursor = new Vector2d(200, 100);
-game.sprite = new Entity2d(new Vector2d(0, 100), new Vector2d(.4, -5), new Vector2d(0, .15), new Sprite(game.context, 'http://www.dan-dare.org/Dan%20Mario/SMB1MarioSmallAni.gif'));
+game.entity = new Entity2d(new Vector2d(-100, 0), new Vector2d(4, 0.1), new Vector2d(-0.01, 0), new Sprite(game.context, 'http://img.informer.com/icons/png/32/104/104916.png'));
 (function (window) {
     function gameLoop() {
-        game.context.clearRect(0, 0, 400, 200);
+        game.context.clearRect(0, 0, 800, 200);
         game.context.beginPath();
         game.context.moveTo(game.oldCursor.getX(), game.oldCursor.getY());
         game.context.lineTo(game.cursor.getX(), game.cursor.getY());
         game.context.stroke();
-        game.sprite.update();
-        game.sprite.draw();
+        game.entity.update();
+        game.entity.draw();
     }
     window.setInterval(gameLoop, 1000 / 60); // 60fps
 }(window));
@@ -29,19 +29,19 @@ $(document.body).on('keydown', function (event) {
     var space = 32;
     switch (event.which) {
         case  leftArrow:
-            game.sprite.moveLeft();
+            game.entity.moveLeft();
             break;
         case  upArrow:
-            game.sprite.moveUp();
+            game.entity.moveUp();
             break;
         case  rightArrow:
-            game.sprite.moveRight();
+            game.entity.moveRight();
             break;
         case  downArrow:
-            game.sprite.moveDown();
+            game.entity.moveDown();
             break;
         case  space:
-            game.sprite.jump();
+            game.entity.jump();
             break;
     }
 });

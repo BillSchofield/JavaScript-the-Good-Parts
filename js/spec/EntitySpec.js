@@ -36,6 +36,12 @@ describe("Entity2d", function () {
         expect(velocity.addY).toHaveBeenCalledWith(1);
     });
 
+    it("should have positive velocity when it has acceleration of positive X", function () {
+        acceleration.getX = jasmine.createSpy("getX() spy").andReturn(1);
+        entity.update();
+        expect(velocity.addX).toHaveBeenCalledWith(1);
+    });
+
     it("should have negative velocity when it jumps", function () {
         entity.jump();
         expect(velocity.setY).toHaveBeenCalledWith(-5);
