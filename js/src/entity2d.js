@@ -16,7 +16,7 @@ game.entity2d = function(spec) {
     };
     
     that.draw = function() {
-        sprite.draw(spec.position);
+        sprite.draw(position);
     };
     
     that.getX = function() {
