@@ -5,6 +5,14 @@ function Vector2d(x, y) {
     this.y = y;
 }
 
+Vector2d.prototype.setX = function(x) {
+    this.x = x;
+};
+
+Vector2d.prototype.setY = function(y) {
+    this.y = y;
+};
+
 Vector2d.prototype.getX = function() {
     return this.x;
 };

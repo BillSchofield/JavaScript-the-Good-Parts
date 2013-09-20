@@ -7,7 +7,7 @@ game.context = game.canvas.getContext('2d');
 
 game.cursor = new Vector2d(200, 100);
 game.oldCursor = new Vector2d(200, 100);
-game.mario = new Entity2d(new Vector2d(200, 100), new Sprite(game.context, 'http://www.dan-dare.org/Dan%20Mario/SMB1MarioSmallAni.gif'));
+game.sprite = new Entity2d(new Vector2d(0, 100), new Vector2d(.4, -5), new Vector2d(0, .15), new Sprite(game.context, 'http://www.dan-dare.org/Dan%20Mario/SMB1MarioSmallAni.gif'));
 (function (window) {
     function gameLoop() {
         game.context.clearRect(0, 0, 400, 200);
@@ -15,7 +15,8 @@ game.mario = new Entity2d(new Vector2d(200, 100), new Sprite(game.context, 'http
         game.context.moveTo(game.oldCursor.getX(), game.oldCursor.getY());
         game.context.lineTo(game.cursor.getX(), game.cursor.getY());
         game.context.stroke();
-        game.mario.draw();
+        game.sprite.update();
+        game.sprite.draw();
     }
     window.setInterval(gameLoop, 1000 / 60); // 60fps
 }(window));
@@ -25,18 +26,22 @@ $(document.body).on('keydown', function (event) {
     var upArrow = 38;
     var rightArrow = 39;
     var downArrow = 40;
+    var space = 32;
     switch (event.which) {
         case  leftArrow:
-            game.mario.moveLeft();
+            game.sprite.moveLeft();
             break;
         case  upArrow:
-            game.mario.moveUp();
+            game.sprite.moveUp();
             break;
         case  rightArrow:
-            game.mario.moveRight();
+            game.sprite.moveRight();
             break;
         case  downArrow:
-            game.mario.moveDown();
+            game.sprite.moveDown();
+            break;
+        case  space:
+            game.sprite.jump();
             break;
     }
 });

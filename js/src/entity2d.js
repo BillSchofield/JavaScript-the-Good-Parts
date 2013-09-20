@@ -1,10 +1,22 @@
 "use strict";
 
-function Entity2d(position, sprite) {
+function Entity2d(position, velocity, acceleration, sprite) {
     this.position = position;
+    this.velocity = velocity;
+    this.acceleration = acceleration;
     this.sprite = sprite;
     this.step = 5;
 }
+
+Entity2d.prototype.update = function() {
+    this.velocity.addY(this.acceleration.getY());
+    this.position.addX(this.velocity.getX());
+    this.position.addY(this.velocity.getY());
+};
+
+Entity2d.prototype.jump = function() {
+    this.velocity.setY(-5);
+};
 
 Entity2d.prototype.draw = function() {
     this.sprite.draw(this.position);
