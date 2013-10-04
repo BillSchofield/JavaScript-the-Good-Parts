@@ -1,13 +1,6 @@
 var game = game || {};
 
 game.runner = function(spec){
-    var keyResponses = {
-        37 : function(entity){entity.moveLeft();},
-        38 : function(entity){entity.moveUp();},
-        39 : function(entity){entity.moveRight();},
-        40 : function(entity){entity.moveDown();}
-    };
-
     function defaultEntity() {
         return game.entity2d({
             position: game.vector2d({x: -100, y: 0}),
@@ -19,13 +12,6 @@ game.runner = function(spec){
             })
         });
     }
-
-    function keyHandler(event) {
-        var keyPress = event.which;
-        if (keyPress in keyResponses) {
-            keyResponses[keyPress](entity);
-        }
-    };
 
     function clickEventHandler() {
         return function (event) {
@@ -60,7 +46,7 @@ game.runner = function(spec){
     var path = game.path({context: context});
 
     that.go = gameLoopRunner();
-    $(document.body).on('keydown', keyHandler);
+    $(document.body).on('keydown', game.keyPressEventHandler({entity:entity}).handle);
     canvas.addEventListener('click', clickEventHandler(), false);
     return that;
 };
