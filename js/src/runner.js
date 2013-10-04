@@ -20,15 +20,6 @@ game.runner = function(spec){
         });
     }
 
-    function drawPath(path){
-        context.beginPath();
-        context.moveTo(400, 100);
-        path.map(function(point){
-            context.lineTo(point.getX(), point.getY());
-        });
-        context.stroke();
-    }
-
     function keyHandler(event) {
         var keyPress = event.which;
         if (keyPress in keyResponses) {
@@ -43,7 +34,7 @@ game.runner = function(spec){
                 return game.vector2d({x: event.clientX - rect.left, y: event.clientY - rect.top});
             }
 
-            path.push(getMousePos(canvas, event));
+            path.addPoint(getMousePos(canvas, event));
         };
     }
 
@@ -51,7 +42,7 @@ game.runner = function(spec){
         return function (window) {
             function gameLoop() {
                 context.clearRect(0, 0, 800, 200);
-                drawPath(path);
+                path.draw();
                 entity.update();
                 entity.draw();
             }
@@ -66,7 +57,7 @@ game.runner = function(spec){
     var canvas = document.getElementById('gameOne');
     var context = canvas.getContext('2d');
     var entity = defaultEntity();
-    var path = [];
+    var path = game.path({context: context});
 
     that.go = gameLoopRunner();
     $(document.body).on('keydown', keyHandler);
