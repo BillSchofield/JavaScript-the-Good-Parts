@@ -13,17 +13,6 @@ game.runner = function(spec){
         });
     }
 
-    function clickEventHandler() {
-        return function (event) {
-            function getMousePos(canvas, event) {
-                var rect = canvas.getBoundingClientRect();
-                return game.vector2d({x: event.clientX - rect.left, y: event.clientY - rect.top});
-            }
-
-            path.addPoint(getMousePos(canvas, event));
-        };
-    }
-
     function gameLoopRunner() {
         return function (window) {
             function gameLoop() {
@@ -47,6 +36,6 @@ game.runner = function(spec){
 
     that.go = gameLoopRunner();
     $(document.body).on('keydown', game.keyPressEventHandler({entity:entity}).handle);
-    canvas.addEventListener('click', clickEventHandler(), false);
+    canvas.addEventListener('click', game.clickEventHandler({canvas:canvas, path:path}).handle, false);
     return that;
 };
