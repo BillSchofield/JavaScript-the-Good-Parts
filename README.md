@@ -1,31 +1,59 @@
-# HTML5GameTemplate
+# HTML5GameTemplate & JavaScript: The Good Parts
+## Purpose of the lesson
+* Demonstrate principles and practices that allow ThoughtWorks to use JavaScript as a first class language.
+* Describe JavaScript's differences (especially the good and bad parts)
+* Show how the 'Functional Object Creation Pattern' allows us to better use healthy OO design patterns
+* Introduce JS unit testing in Jasmine
+* Practice these new concepts by writing a simple game
 
-## What does the template code give you
+## JavaScript as a First Class Language
+* JavaScript was rapidly adopted as the language of web client behavior when Java Applets failed to be a viable solution.
+* The vast major of web developers treat it as a second (or third) class citizen in their development ecosystem. Most 
+code snippets do not incorporate good design. Many developers just Copy/Paste the JavaScript that they need without 
+understanding it.
 
-HTML5 Boilerplate is a simple example of Test Driven game-like behavior
-implemented in Javascript using a functional object creation model (as described in
-'Javascript: the Good Parts, Chapter 5).
+This approach worked well enough when we only wanted minor behavior in oyr web clients and the bit of behavior were 
+largely independent and coupled only through the DOM. As we started building 'thick' web clients these practices weren't
+sustainable, but they are how almost everyone was doing it and how most people are doing it today.
 
-The sample contains examples of:
-* Keyboard Input
-* Mouse Input
-* Polygon drawing
-* Sprite drawing
-* Simple object motion (using an Euler integrator)
+ThoughtWorks takes JS more seriously and we use the same rigor with it as we do with our 'server' languages. We initially 
+use good software design practices, we unit test our code, and we refactor it.
 
-## Jasmine Unit Tests
+## JavaScript: The Good Parts
+We're just going to hit some of the high points of this book. There is a lot more to it and the time you spend reading 
+carefully will be a good investment.
 
-## JavaScript: the Good Parts
-
-### Key Points from the Book
-
-#### JavaScript has some hideously Bad Parts
+### JavaScript has some hideously Bad Parts
 * Programming model based on global variables
+* Scope: uses block scope syntax but not block scope
+* Semi-colon insertion
+* Phony arrays
+* Lots of falsy values
+* == vs === (== coerces)
+> '' == '0'          // false
+> 0 == ''            // true
+> 0 == '0'           // true
+> 
+> false == 'false'   // false
+> false == '0'       // true
+> 
+> false == undefined // false
+> false == null      // false
+> null == undefined  // true
+> 
+> ' \t\r\n ' == 0    // true
+* new (don't use it)
+* Instance variables and methods are public unless you use the Functional Object Creation Pattern
+
+
 
 #### We use JavaScript because: 
 * It's more or less mandatory for building modern Web Apps
-* It has delightfully Good Parts:
+* It has many Beautiful Features:
     * Functions as first class objects
+    * “Dynamic objects with prototypal inheritance”
+      
+      Excerpt From: Douglas Crockford. “JavaScript_The_Good_Parts.epub.” iBooks. https://itunes.apple.com/WebObjects/MZStore.woa/wa/viewBook?id=7061C69F26BAB9BDD4C1BDDF7C93351B
     * Powerful object literal notation
 
 
@@ -67,3 +95,19 @@ The sample contains examples of:
 > Type these into a JS console and see if you were right.
 
 * Duck Typing
+
+
+## Jasmine Unit Tests
+
+## What does the template code give you
+
+HTML5 Boilerplate is a simple example of Test Driven game-like behavior
+implemented in Javascript using a functional object creation model (as described in
+'Javascript: the Good Parts, Chapter 5).
+
+The sample contains examples of:
+* Keyboard Input
+* Mouse Input
+* Polygon drawing
+* Sprite drawing
+* Simple object motion (using an Euler integrator)
