@@ -34,9 +34,51 @@ game.runner = function(spec){
 };
 ```
 #### Scope: uses block scope syntax but not block scope
+The book recommends declaring all of your variables at the top of each code block. I think this is a bad practice. 
+In practice, neither solution is good.
+
 #### Semi-colon insertion
+It sometimes inserts semicolons in places where they are not welcome. Consider the consequences of semicolon insertion 
+on the return statement. If a return statement returns a value, that value expression must begin on the same line as the 
+return:
+``` javascript
+return
+{
+    status: true
+};
+```
+This appears to return an object containing a status member. Unfortunately, semicolon insertion turns it into a 
+statement that returns undefined.
+
+Always, always, always use K&R style braces in JavaScript:
+``` javascript
+return {
+    status: true
+};
+```
+
 #### Phony arrays
+Arrays are implemented as maps in JavaScript. This has huge performance implications.
+
 #### Lots of falsy values
+|Value | Type |
+|------|------|
+|0     |Number|
+|NaN (not a number) |Number|
+|'' (empty string) |String|
+|false |Boolean|
+|null  |Object |
+|undefined|Undefined|
+
+These values are all falsy, but they are not interchangeable. For example, this is the wrong way to determine if an 
+object is missing a member:
+``` javascript
+value = myObject[name];
+if (value == null) {
+   alert(name + ' not found.');
+}
+```
+
 #### == vs === (== coerces)
 ``` javascript
 '' == '0'          // false
@@ -57,6 +99,7 @@ null == undefined  // true
 
 ### We use JavaScript because: 
 #### It's more or less mandatory for building modern Web Apps
+
 #### It has many Beautiful Features:
 * Functions as first class objects
 * “Dynamic objects with prototypal inheritance”
@@ -100,7 +143,8 @@ null == undefined  // true
 > Type these into a JS console and see if you were right.
 
 #### Duck Typing
-
+If it walks like a duck and talks like a duck...
+JavaScript doesn't care what type things are. It's happy to call a method on any object that has that method.
 
 ## Jasmine Unit Tests
 This is a good intro & reference: http://jasmine.github.io/2.0/introduction.html
