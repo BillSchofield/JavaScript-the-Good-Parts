@@ -1,5 +1,5 @@
 # HTML5GameTemplate & JavaScript: The Good Parts
-## Purpose of the lesson
+## Purpose of this session
 * Demonstrate principles and practices that allow ThoughtWorks to use JavaScript as a first class language.
 * Describe JavaScript's differences (especially the good and bad parts)
 * Show how the 'Functional Object Creation Pattern' allows us to better use healthy OO design patterns
@@ -33,7 +33,8 @@ game.runner = function(spec){
     ...
 };
 ```
-#### Scope: uses block scope syntax but not block scope
+#### Scope: uses block scope syntax but variables are function scoped
+Note that control blocks do not create a new scope. You can also reference variables before you declare them.
 The book recommends declaring all of your variables at the top of each code block. I think this is a bad practice. 
 In practice, neither solution is good.
 
