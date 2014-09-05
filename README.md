@@ -36,7 +36,28 @@ game.runner = function(spec){
 #### Scope: uses block scope syntax but variables are function scoped
 Note that control blocks do not create a new scope. You can also reference variables before you declare them.
 The book recommends declaring all of your variables at the top of each code block. I think this is a bad practice. 
-In practice, neither solution is good.
+In practice, neither solution is a good solution.
+
+``` javascript
+var stuff = 'stuff';
+function() {
+ console.log(stuff); //outputs 'undefined'
+ var stuff = 'other stuff';
+ console.log(stuff); //outputs 'other stuff'
+}
+```
+
+The first console.log outputs undefined because the var stuff in the function was _hoisted_ to the top of the function.
+
+``` javascript
+var stuff = 'stuff';
+function() {
+ var stuff; //has not been defined
+ console.log(stuff);
+ stuff = 'other stuff'; //defined here
+ console.log(stuff);
+}
+```
 
 #### Semi-colon insertion
 It sometimes inserts semicolons in places where they are not welcome. Consider the consequences of semicolon insertion 
