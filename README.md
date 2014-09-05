@@ -31,6 +31,31 @@ The sample contains examples of:
 
 ### Some important aspects of JavaScript:
 * Uses prototypical inheritance instead of class inheritance
+Excerpt From: Douglas Crockford. “JavaScript_The_Good_Parts
+> JavaScript is a prototypal inheritance language. That means that objects can inherit properties directly from other objects. The language is class-free.
+> If a function is invoked with the new prefix, then a new object will be created with a hidden link to the value of the function's prototype member, and this will be bound to that new object.”
+> ```javascript
+> // Create a constructor function called Quo.
+> // It makes an object with a status property.
+> 
+> var Quo = function (string) {
+>     this.status = string;
+> };
+> 
+> // Give all instances of Quo a public method
+> // called get_status.
+> 
+> Quo.prototype.get_status = function (  ) {
+>     return this.status;
+> };
+> 
+> // Make an instance of Quo.
+> 
+> var myQuo = new Quo("confused");
+> 
+> document.writeln(myQuo.get_status(  ));  // confused
+> ```
+
 * Loose/weak Typing
 > What do you expect these lines to display.
 > ```javascript
