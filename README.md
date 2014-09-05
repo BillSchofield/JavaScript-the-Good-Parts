@@ -24,12 +24,12 @@ We're just going to hit some of the high points of this book. There is a lot mor
 carefully will be a good investment.
 
 ### JavaScript has some hideously Bad Parts
-* Programming model based on global variables
-* Scope: uses block scope syntax but not block scope
-* Semi-colon insertion
-* Phony arrays
-* Lots of falsy values
-* == vs === (== coerces)
+#### Programming model based on global variables
+#### Scope: uses block scope syntax but not block scope
+#### Semi-colon insertion
+#### Phony arrays
+#### Lots of falsy values
+#### == vs === (== coerces)
 > '' == '0'          // false
 > 0 == ''            // true
 > 0 == '0'           // true
@@ -42,23 +42,18 @@ carefully will be a good investment.
 > null == undefined  // true
 > 
 > ' \t\r\n ' == 0    // true
-* new (don't use it)
-* Instance variables and methods are public unless you use the Functional Object Creation Pattern
+#### new (don't use it)
+#### Instance variables and methods are public unless you use the Functional Object Creation Pattern
 
-
-
-#### We use JavaScript because: 
-* It's more or less mandatory for building modern Web Apps
-* It has many Beautiful Features:
-    * Functions as first class objects
-    * “Dynamic objects with prototypal inheritance”
-      
-      Excerpt From: Douglas Crockford. “JavaScript_The_Good_Parts.epub.” iBooks. https://itunes.apple.com/WebObjects/MZStore.woa/wa/viewBook?id=7061C69F26BAB9BDD4C1BDDF7C93351B
-    * Powerful object literal notation
-
+### We use JavaScript because: 
+#### It's more or less mandatory for building modern Web Apps
+#### It has many Beautiful Features:
+* Functions as first class objects
+* “Dynamic objects with prototypal inheritance”
+* Powerful object literal notation
 
 ### Some important aspects of JavaScript:
-* Uses prototypical inheritance instead of class inheritance
+#### Uses prototypical inheritance instead of class inheritance
 > Excerpt From: Douglas Crockford. “JavaScript, The_Good_Parts"
 > 
 > JavaScript is a prototypal inheritance language. That means that objects can inherit properties directly from other objects. The language is class-free.
@@ -86,7 +81,7 @@ carefully will be a good investment.
 > document.writeln(myQuo.get_status(  ));  // confused
 > ```
 
-* Loose/weak Typing
+#### Loose/weak Typing
 > What do you expect these lines to display.
 > ```javascript
 > console.log(true + 5 + "10");
@@ -94,7 +89,7 @@ carefully will be a good investment.
 > ```
 > Type these into a JS console and see if you were right.
 
-* Duck Typing
+#### Duck Typing
 
 
 ## Jasmine Unit Tests
