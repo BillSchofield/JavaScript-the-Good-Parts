@@ -7,8 +7,8 @@
 * Practice these new concepts by writing a simple game
 
 ## JavaScript as a First Class Language
-* JavaScript was rapidly adopted as the language of web client behavior when Java Applets failed to be a viable solution.
-* The vast major of web developers treat it as a second (or third) class citizen in their development ecosystem. Most 
+JavaScript was rapidly adopted as the language of web client behavior when Java Applets failed to be a viable solution. 
+The vast major of web developers treat it as a second (or third) class citizen in their development ecosystem. Most 
 code snippets do not incorporate good design. Many developers just Copy/Paste the JavaScript that they need without 
 understanding it.
 
@@ -25,6 +25,14 @@ carefully will be a good investment.
 
 ### JavaScript has some hideously Bad Parts
 #### Programming model based on global variables
+Use namespace objects to get out of the global namespace
+``` javascript
+var game = game || {};
+
+game.runner = function(spec){
+    ...
+};
+```
 #### Scope: uses block scope syntax but not block scope
 #### Semi-colon insertion
 #### Phony arrays
@@ -95,11 +103,12 @@ null == undefined  // true
 
 
 ## Jasmine Unit Tests
+This is a good intro & reference: http://jasmine.github.io/2.0/introduction.html
 
 ## What does the template code give you
 
 HTML5 Boilerplate is a simple example of Test Driven game-like behavior
-implemented in Javascript using a functional object creation model (as described in
+implemented in Javascript using a functional object creation pattern (as described in
 'Javascript: the Good Parts, Chapter 5).
 
 The sample contains examples of:
