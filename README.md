@@ -120,6 +120,8 @@ null == undefined  // true
 ' \t\r\n ' == 0    // true
 ```
 #### new (don't use it)
+If you accidentally call the constructor function directly, terrible things can happen to variables in the global namespace.
+
 #### Instance variables and methods are public unless you use the Functional Object Creation Pattern
 
 ### We use JavaScript because: 
