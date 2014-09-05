@@ -32,12 +32,11 @@ The sample contains examples of:
 ### Some important aspects of JavaScript:
 * Uses prototypical inheritance instead of class inheritance
 * Loose/weak Typing
-What do you expect these lines to display.
-
-```javascript
-console.log(true + 5 + "10");
-console.log(true + "10");
-```
-Type these into a JS console and see if you were right.
+> What do you expect these lines to display.
+> ```javascript
+> console.log(true + 5 + "10");
+> console.log(true + "10");
+> ```
+> Type these into a JS console and see if you were right.
 
 * Duck Typing
