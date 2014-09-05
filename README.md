@@ -30,18 +30,20 @@ carefully will be a good investment.
 #### Phony arrays
 #### Lots of falsy values
 #### == vs === (== coerces)
-> '' == '0'          // false
-> 0 == ''            // true
-> 0 == '0'           // true
-> 
-> false == 'false'   // false
-> false == '0'       // true
-> 
-> false == undefined // false
-> false == null      // false
-> null == undefined  // true
-> 
-> ' \t\r\n ' == 0    // true
+``` javascript
+'' == '0'          // false
+0 == ''            // true
+0 == '0'           // true
+
+false == 'false'   // false
+false == '0'       // true
+
+false == undefined // false
+false == null      // false
+null == undefined  // true
+
+' \t\r\n ' == 0    // true
+```
 #### new (don't use it)
 #### Instance variables and methods are public unless you use the Functional Object Creation Pattern
 
