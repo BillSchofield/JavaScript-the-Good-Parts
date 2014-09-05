@@ -35,9 +35,12 @@ game.runner = function(spec){
 ```
 #### Scope: uses block scope syntax but variables are function scoped
 Note that control blocks do not create a new scope. You can also reference variables before you declare them.
-The book recommends declaring all of your variables at the top of each code block. I think this is a bad practice. 
+The book recommends declaring all of your variables at the top of each code block. This is safer but makes your code 
+difficult to refactor than declaring and instantiation variables at the same time.
+
 In practice, neither solution is a good solution.
 
+Here's an example of what can go wrong if you don't declare variables at the top of the function.
 ``` javascript
 var stuff = 'stuff';
 function() {
