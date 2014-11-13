@@ -12,7 +12,7 @@ The vast major of web developers treat it as a second (or third) class citizen i
 code snippets do not incorporate good design. Many developers just Copy/Paste the JavaScript that they need without 
 understanding it.
 
-This approach worked well enough when we only wanted minor behavior in oyr web clients and the bit of behavior were 
+This approach worked well enough when we only wanted minor behavior in our web clients and the bit of behavior were
 largely independent and coupled only through the DOM. As we started building 'thick' web clients these practices weren't
 sustainable, but they are how almost everyone was doing it and how most people are doing it today.
 
