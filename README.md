@@ -12,16 +12,20 @@ The vast major of web developers treat it as a second (or third) class citizen i
 code snippets do not incorporate good design. Many developers just Copy/Paste the JavaScript that they need without 
 understanding it.
 
-This approach worked well enough when we only wanted minor behavior in our web clients and the bit of behavior were
-largely independent and coupled only through the DOM. As we started building 'thick' web clients these practices weren't
-sustainable, but they are how almost everyone was doing it and how most people are doing it today.
+This approach worked well enough when:
+* we only wanted minor behavior in our web clients
+*  the bits of behavior were largely independent
+* there was no abstraction beyond the DOM.
 
-ThoughtWorks takes JS more seriously and we use the same rigor with it as we do with our 'server' languages. We initially 
-use good software design practices, we unit test our code, and we refactor it.
+As we started building 'thick' web clients these practices weren't sustainable, but they are how almost everyone was
+doing it and how most people are doing it today.
+
+ThoughtWorks takes JavaScript more seriously and we use the same rigor with it as we do with our 'server' languages. We
+initially use good software design practices, we unit test our code, and we refactor it.
 
 ## JavaScript: The Good Parts
-We're just going to hit some of the high points of this book. There is a lot more to it and the time you spend reading 
-carefully will be a good investment.
+We're just going to hit some of the high points of this book. There is a lot more to it and reading the entire book
+carefully will be a good investment of your time.
 
 ### JavaScript has some hideously Bad Parts
 #### Programming model based on global variables
@@ -36,7 +40,7 @@ game.runner = function(spec){
 #### Scope: uses block scope syntax but variables are function scoped
 Note that control blocks do not create a new scope. You can also reference variables before you declare them.
 The book recommends declaring all of your variables at the top of each code block. This is safer but makes your code 
-difficult to refactor than declaring and instantiation variables at the same time.
+more difficult to refactor than declaring and instantiation variables at the same time.
 
 In practice, neither solution is a good solution.
 
@@ -75,6 +79,12 @@ return
 This appears to return an object containing a status member. Unfortunately, semicolon insertion turns it into a 
 statement that returns undefined.
 
+``` javascript
+return **;**
+{
+    status: true
+};
+```
 Always, always, always use K&R style braces in JavaScript:
 ``` javascript
 return {
