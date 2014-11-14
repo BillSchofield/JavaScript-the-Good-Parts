@@ -80,7 +80,7 @@ This appears to return an object containing a status member. Unfortunately, semi
 statement that returns undefined.
 
 ``` javascript
-return **;**
+return; // <--- This semi-colon is automatically inserted by the interpreter
 {
     status: true
 };
@@ -108,13 +108,17 @@ Arrays are implemented as maps in JavaScript. This has huge performance implicat
 These values are all falsy, but they are not interchangeable. For example, this is the wrong way to determine if an 
 object is missing a member:
 ``` javascript
-value = myObject[name];
+value = myObject[name]; // If the map doesn't contain the key 'name' then value = undefined and undefined is not equal to null
 if (value == null) {
    alert(name + ' not found.');
 }
 ```
 
-#### == vs === (== coerces)
+#### == vs ===
+
+```==``` and ```!=``` are evil because they force the type of the second operand to be coerced to the type of the first.
+ This leads to the following strange cases;
+
 ``` javascript
 '' == '0'          // false
 0 == ''            // true
@@ -146,9 +150,11 @@ If you accidentally call the constructor function directly, terrible things can 
 #### Uses prototypical inheritance instead of class inheritance
 > Excerpt From: Douglas Crockford. “JavaScript, The_Good_Parts"
 > 
-> JavaScript is a prototypal inheritance language. That means that objects can inherit properties directly from other objects. The language is class-free.
+> JavaScript is a prototypal inheritance language. That means that objects can inherit properties directly from other
+> objects. The language is class-free.
 >
-> If a function is invoked with the new prefix, then a new object will be created with a hidden link to the value of the function's prototype member, and this will be bound to that new object.”
+> If a function is invoked with the new prefix, then a new object will be created with a hidden link to the value of
+> the function's prototype member, and this will be bound to that new object.”
 > ```javascript
 > // Create a constructor function called Quo.
 > // It makes an object with a status property.
