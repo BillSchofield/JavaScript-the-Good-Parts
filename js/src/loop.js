@@ -10,7 +10,7 @@ game.loop = function(spec){
 
     that.run = function(window) {
             function gameLoop() {
-                context.clearRect(0, 0, 800, 200);
+                context.clearRect(0, 0, 1280, 1024);
                 path.draw();
                 entity.update();
                 entity.draw();

@@ -9,7 +9,7 @@ game.entityFactory = function(spec){
 
     that.create = function() {
         return game.entity2d({
-            position: game.vector2d({x: -100, y: 0}),
+            position: game.vector2d({x: 0, y: 200}),
             velocity: game.vector2d({x: 4, y: 0.1}),
             acceleration: game.vector2d({x: -0.01, y: 0}),
             sprite: game.sprite({
