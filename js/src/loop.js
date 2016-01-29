@@ -4,23 +4,12 @@ var game = game || {};
 
 game.loop = function(spec){
     var that = {};
-    var context = spec.context;
-    var path = spec.path;
-    var entity = spec.entity;
-    var score = 0;
+    var window = spec.window;
+    var update = spec.update;
 
-    that.run = function(window) {
-            function gameLoop() {
-                context.clearRect(0, 0, 1280, 1024);
-                path.draw();
-                entity.update();
-                entity.draw();
-
-                $('div').children('span').eq(1).html(score++);
-            }
-
+    that.run = function() {
             var framesPerSecond = 1000 / 60;
-            window.setInterval(gameLoop, framesPerSecond);
+            window.setInterval(update, framesPerSecond);
     };
 
     return that;
