@@ -141,10 +141,6 @@ null == undefined  // true
 
 ' \t\r\n ' == 0    // true
 ```
-#### new (don't use it)
-If you accidentally call the constructor function directly, terrible things can happen to variables in the global namespace.
-
-#### Instance variables and methods are public unless you use the Functional Object Creation Pattern
 
 ### We use JavaScript because: 
 #### It's more or less mandatory for building modern Web Apps
@@ -196,6 +192,103 @@ If you accidentally call the constructor function directly, terrible things can 
 #### Duck Typing
 If it walks like a duck and talks like a duck...
 JavaScript doesn't care what type things are. It's happy to call a method on any object that has that method.
+
+## Functional Object Creation Pattern
+### The Challenges with 'new'
+#### Constructor Methods are dangerous to call
+If you accidentally call the constructor function directly, terrible things can happen to variables in the global namespace.
+#### Instance variables and methods are public unless you use the Functional Object Creation Pattern
+You can't have encapsulation if all of your instance variables are public.
+
+### An Alternative
+Use a namespaced creation function that makes a new object (without calling 'new') that has methods which are a closures
+over the shared variables that are hidden from others because they are scoped to the creation function.
+
+#### Make a function that creates an object
+``` javascript
+var game = game || {};
+game.entity2d = function() {
+    var that = {};
+    return that;    
+}
+```
+
+#### Add a method
+``` javascript
+var game = game || {};
+game.entity2d = function() {
+    var that = {};
+    
+    that.update = function() {
+    };
+    
+    return that;    
+}
+```
+
+#### Add some behavior to the method (a closure)
+``` javascript
+var game = game || {};
+game.entity2d = function() {
+    var that = {};
+
+    
+    var position = game.vector2d({x: 200, y: 100});
+    var velocity = game.vector2d({x: 1, y: -2});
+    var acceleration = game.vector2d({x: 0, y: 0.02});
+    
+    that.update = function() {
+        velocity.add(acceleration);
+        position.add(velocity);
+    };
+    
+    return that;    
+}
+```
+
+#### Inject dependencies into the object creation function using a map
+``` javascript
+var game = game || {};
+game.entity2d = function(spec) {
+    var that = {};
+
+    var position = spec.position;
+    var velocity = spec.velocity;
+    var acceleration = spec.acceleration;
+    
+    that.update = function() {
+        velocity.add(acceleration);
+        position.add(velocity);
+    };
+    
+    return that;    
+}
+```
+
+#### Add more behavior to your class 
+``` javascript
+var game = game || {};
+game.entity2d = function(spec) {
+    var that = {};
+
+    var position = spec.position;
+    var velocity = spec.velocity;
+    var acceleration = spec.acceleration;
+    
+    that.update = function() {
+        velocity.add(acceleration);
+        position.add(velocity);
+    };
+    
+    that.accelerate = function(delta) {
+        acceleration.add(delta);
+    }
+    
+    return that;    
+}
+```
+
+
 
 ## Jasmine Unit Tests
 This is a good intro & reference: http://jasmine.github.io/2.0/introduction.html
