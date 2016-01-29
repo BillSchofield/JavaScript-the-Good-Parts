@@ -10,7 +10,8 @@ game.runner = function(spec){
     var context = canvas.getContext('2d');
     var entity = game.entityFactory({context:context}).create();
     var path = game.path({context: context});
-    var frame = game.frame({context:context, path:path, entity:entity});
+    var score = game.score({element: $('div').children('span').eq(1), value: 0});
+    var frame = game.frame({context:context, path:path, entity:entity, score: score});
 
     that.go = game.loop({window: window, update: frame.update}).run;
     $(document.body).on('keydown', game.keyPressEventHandler({entity:entity}).handle);

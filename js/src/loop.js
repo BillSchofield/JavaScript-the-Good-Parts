@@ -8,8 +8,8 @@ game.loop = function(spec){
     var update = spec.update;
 
     that.run = function() {
-            var framesPerSecond = 1000 / 60;
-            window.setInterval(update, framesPerSecond);
+        var framesPerSecond = 1000 / 60;
+        window.setInterval(update, framesPerSecond);
     };
 
     return that;
