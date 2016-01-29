@@ -2,7 +2,7 @@
 
 var game = game || {};
 
-game.score = function(specspec){
+game.score = function(spec){
     var that = {};
     var element = spec.element;
 
