@@ -8,10 +8,7 @@ game.keyPressEventHandler = function(spec){
     var entity = spec.entity;
 
     var keyResponses = {
-        37 : function(entity){entity.moveLeft();},
-        38 : function(entity){entity.moveUp();},
-        39 : function(entity){entity.moveRight();},
-        40 : function(entity){entity.moveDown();}
+        74 : function(entity){entity.jump()}
     };
 
     that.handle = function(event) {

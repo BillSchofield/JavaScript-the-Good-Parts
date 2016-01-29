@@ -47,23 +47,27 @@ In practice, neither solution is a good solution.
 Here's an example of what can go wrong if you don't declare variables at the top of the function.
 ``` javascript
 var stuff = 'stuff';
-function() {
- console.log(stuff); //outputs 'undefined'
- var stuff = 'other stuff';
- console.log(stuff); //outputs 'other stuff'
-}
+var hoist = function() {
+    console.log(stuff);
+    var stuff = 'other stuff';
+    console.log(stuff);
+};
+
+hoist();
 ```
 
 The first console.log outputs undefined because the var stuff in the function was _hoisted_ to the top of the function.
 
 ``` javascript
 var stuff = 'stuff';
-function() {
- var stuff; //has not been defined
- console.log(stuff);
- stuff = 'other stuff'; //defined here
- console.log(stuff);
-}
+var hoist = function() {
+    var stuff; //has not been defined
+    console.log(stuff);
+    stuff = 'other stuff'; //defined here
+    console.log(stuff);
+};
+
+hoist();
 ```
 
 #### Semi-colon insertion
@@ -71,25 +75,38 @@ It sometimes inserts semicolons in places where they are not welcome. Consider t
 on the return statement. If a return statement returns a value, that value expression must begin on the same line as the 
 return:
 ``` javascript
-return
-{
-    status: true
+var expects_to_return_map = function() {
+    return
+    {
+        status: true
+    };
 };
+
+expects_to_return_map();
 ```
 This appears to return an object containing a status member. Unfortunately, semicolon insertion turns it into a 
 statement that returns undefined.
 
 ``` javascript
-return; // <--- This semi-colon is automatically inserted by the interpreter
-{
-    status: true
+var expects_to_return_map = function() {
+    return; // <--- This semi-colon is automatically inserted by the interpreter
+    {
+        status: true
+    };
 };
+
+expects_to_return_map();
 ```
+
 Always, always, always use K&R style braces in JavaScript:
 ``` javascript
-return {
-    status: true
+var actually_returns_a_map = function() {
+    return {
+        status: true
+    };
 };
+
+actually_returns_a_map();
 ```
 
 #### Phony arrays
@@ -104,15 +121,6 @@ Arrays are implemented as maps in JavaScript. This has huge performance implicat
 |false |Boolean|
 |null  |Object |
 |undefined|Undefined|
-
-These values are all falsy, but they are not interchangeable. For example, this is the wrong way to determine if an 
-object is missing a member:
-``` javascript
-value = myObject[name]; // If the map doesn't contain the key 'name' then value = undefined and undefined is not equal to null
-if (value == null) {
-   alert(name + ' not found.');
-}
-```
 
 #### == vs ===
 

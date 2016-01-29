@@ -7,6 +7,7 @@ game.loop = function(spec){
     var context = spec.context;
     var path = spec.path;
     var entity = spec.entity;
+    var score = 0;
 
     that.run = function(window) {
             function gameLoop() {
@@ -14,6 +15,8 @@ game.loop = function(spec){
                 path.draw();
                 entity.update();
                 entity.draw();
+
+                $('div').children('span').eq(1).html(score++);
             }
 
             var framesPerSecond = 1000 / 60;

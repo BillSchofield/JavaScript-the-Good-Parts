@@ -27,10 +27,14 @@ game.entity2d = function(spec) {
         return position.getY();
     };
     
+    that.jump = function() {
+        velocity.setY(-2);
+    };
+    
     that.moveLeft = function() {
         return position.addX(-step);
     };
-    
+
     that.moveRight = function() {
         return position.addX(step);
     };
