@@ -289,9 +289,21 @@ game.entity2d = function(spec) {
 ```
 
 
+### Exercise
+Implement these user stories by creating a new object using the functional object creation pattern
+
+#### User Stories
+1. Draw a box that is positioned so that the invader moves into the top of it if no action is taken 
+2. Reset the invader to its starting position whenever it overlaps the box
+3. Reset the players score whenever the invader is reset
+4. Place more boxes that work like the original box to make a game
+
 
 ## Jasmine Unit Tests
 This is a good intro & reference: http://jasmine.github.io/2.0/introduction.html
+
+### Exercise
+Redo the previous user stories using TDD
 
 ## What does the template code give you
 
@@ -301,7 +313,5 @@ implemented in Javascript using a functional object creation pattern (as describ
 
 The sample contains examples of:
 * Keyboard Input
-* Mouse Input
-* Polygon drawing
 * Sprite drawing
 * Simple object motion (using an Euler integrator)

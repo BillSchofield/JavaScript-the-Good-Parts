@@ -2,13 +2,13 @@
 
 var game = game || {};
 
-game.entity2d = function(spec) {
+game.entity2d = function(parameters) {
     var that = {};
     var step = 5;
-    var position = spec.position;
-    var velocity = spec.velocity;
-    var acceleration = spec.acceleration;
-    var sprite = spec.sprite;
+    var position = parameters.position;
+    var velocity = parameters.velocity;
+    var acceleration = parameters.acceleration;
+    var sprite = parameters.sprite;
 
     that.update = function() {
         velocity.add(acceleration);

@@ -2,12 +2,12 @@
 
 var game = game || {};
 
-game.sprite = function(spec){
+game.sprite = function(parameters){
     var that = {};
 
     var image = new Image();
-    image.src = spec.imageSource;
-    var context = spec.context;
+    image.src = parameters.imageSource;
+    var context = parameters.context;
 
     that.draw = function(position) {
         context.drawImage(image, position.getX(), position.getY());

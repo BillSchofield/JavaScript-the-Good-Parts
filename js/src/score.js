@@ -2,14 +2,16 @@
 
 var game = game || {};
 
-game.score = function(spec){
+game.score = function(parameters){
     var that = {};
-    var element = spec.element;
+    var element = parameters.element;
 
     that.report = function() {
+        element.html(parameters.value);
     }
 
     that.increment = function() {
+        parameters.value++;
     }
 
     return that;

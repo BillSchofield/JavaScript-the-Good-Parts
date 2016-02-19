@@ -2,11 +2,11 @@
 
 var game = game || {};
 
-game.vector2d = function(spec){
+game.vector2d = function(parameters){
     var that = {};
 
-    var x = spec.x;
-    var y = spec.y;
+    var x = parameters.x;
+    var y = parameters.y;
 
     that.getX = function() {
         return x;

@@ -2,10 +2,10 @@
 
 var game = game || {};
 
-game.keyPressEventHandler = function(spec){
+game.keyPressEventHandler = function(parameters){
     var that = {};
 
-    var entity = spec.entity;
+    var entity = parameters.entity;
 
     var keyResponses = {
         74 : function(entity){entity.jump()}

@@ -2,10 +2,10 @@
 
 var game = game || {};
 
-game.loop = function(spec){
+game.loop = function(parameters){
     var that = {};
-    var window = spec.window;
-    var update = spec.update;
+    var window = parameters.window;
+    var update = parameters.update;
 
     that.run = function() {
         var framesPerSecond = 1000 / 60;
