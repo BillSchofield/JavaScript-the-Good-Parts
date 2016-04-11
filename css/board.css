@@ -1,0 +1,17 @@
+.cell{
+    width:100px;
+    height:100px;
+    font-size: 400%;
+    text-align: center;
+    line-height: normal;
+}
+
+.v{
+    border-left:1px solid #000;
+    border-right:1px solid #000;
+}
+
+.h{
+    border-top:1px solid #000;
+    border-bottom:1px solid #000;
+}

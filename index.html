@@ -12,6 +12,7 @@
 
         <link rel="stylesheet" href="css/normalize.css">
         <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" href="css/board.css">
         <script src="js/vendor/modernizr-2.6.2.min.js"></script>
     </head>
     <body>
@@ -19,23 +20,31 @@
             <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
         <![endif]-->
         <div>
-            <span>Score:</span>
-            <span>0</span>
+            <span id="player-label">Player #</span>
+            <span id="player-number"></span>
         </div>
-        <canvas id="canvas" width="1280" height="1024"></canvas>
+        <div id="board">
+            <table>
+                <tr id="row1">
+                    <td id="cell1" class="cell">X</td>
+                    <td id="cell2" class="cell v">O</td>
+                    <td id="cell3" class="cell">O</td>
+                </tr>
+                <tr id="row2">
+                    <td id="cell4" class="cell h"></td>
+                    <td id="cell5" class="cell v h"></td>
+                    <td id="cell6" class="cell h"></td>
+                </tr>
+                <tr id="row3">
+                    <td id="cell7" class="cell"></td>
+                    <td id="cell8" class="cell v"></td>
+                    <td id="cell9" class="cell"></td>
+                </tr>
+            </table>
+        </div>
 
-        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.9.1.min.js"><\/script>')</script>
-        <script src="js/src/plugins.js"></script>
-        <script src="js/src/vector2d.js"></script>
-        <script src="js/src/sprite.js"></script>
-        <script src="js/src/entity2d.js"></script>
-        <script src="js/src/keyPressEventHandler.js"></script>
-        <script src="js/src/entityFactory.js"></script>
-        <script src="js/src/loop.js"></script>
-        <script src="js/src/score.js"></script>
-        <script src="js/src/frame.js"></script>
-        <script src="js/src/runner.js"></script>
-        <script src="js/src/main.js"></script>
+        <script src="js/vendor/jquery-1.9.1.min.js"></script>
+        <script src="js/src/Example.js"></script>
+        <script src="js/src/Main.js"></script>
     </body>
 </html>
