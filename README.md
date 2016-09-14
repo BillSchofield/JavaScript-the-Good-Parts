@@ -78,8 +78,8 @@ return:
 var expects_to_return_map = function() {
     return
     {
-        status: true
-    };
+        status: true;
+    }
 };
 
 expects_to_return_map();
@@ -89,10 +89,10 @@ statement that returns undefined.
 
 ``` javascript
 var expects_to_return_map = function() {
-    return; // <--- This semi-colon is automatically inserted by the interpreter
+    return // <--- This semi-colon is automatically inserted by the interpreter
     {
-        status: true
-    };
+        status: true;
+    }
 };
 
 expects_to_return_map();
@@ -103,7 +103,7 @@ Always, always, always use K&R style braces in JavaScript:
 var actually_returns_a_map = function() {
     return {
         status: true
-    };
+    }
 };
 
 actually_returns_a_map();
@@ -151,7 +151,7 @@ null == undefined  // true
 * Powerful object literal notation
 
 ### Some important aspects of JavaScript:
-#### Uses prototypical inheritance instead of class inheritance
+#### Uses prototypal inheritance instead of class inheritance
 > Excerpt From: Douglas Crockford. “JavaScript, The_Good_Parts"
 > 
 > JavaScript is a prototypal inheritance language. That means that objects can inherit properties directly from other
